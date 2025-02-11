@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.io.Serializable;
 import java.util.Set;
 
 @Getter
@@ -12,7 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @FieldDefaults(level= AccessLevel.PRIVATE)
 @Entity
-public class Indicator {
+public class Indicator implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idIndicateur;
@@ -25,4 +26,6 @@ public class Indicator {
 
     @OneToMany(mappedBy = "indicator")
     Set<Non_Conformity> nonConformities;
+    @ManyToOne
+    private Rapport rapport;
 }
