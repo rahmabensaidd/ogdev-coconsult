@@ -27,13 +27,9 @@ public class Process implements Serializable {
     Set<Operation>operations;
     @OneToOne
     Conversation conversation;
+    @OneToMany(mappedBy = "process")
+    Set<Objective> objectives;
 
-
-    /*
-    @OneToOne(cascade={CascadeType.PERSIST,CascadeType.REMOVE})
-    Subscription subscription;
-    @OneToMany (mappedBy = "skier")
-    Set<Registration> registrations;
-    @ManyToMany (mappedBy ="skiers")
-    Set<Piste>pistes;*/
+    @ManyToOne
+    Projet projet;
 }
