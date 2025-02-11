@@ -1,0 +1,35 @@
+package tn.esprit.examen.OGDevs_CoConsult.entities;
+import lombok.Getter;
+import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Set;
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@FieldDefaults(level= AccessLevel.PRIVATE)
+@Entity
+public class Conversation implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    private Integer id;
+    @OneToOne (mappedBy = "conversation")
+    Process process;
+    @OneToMany(mappedBy = "conversation")
+    Set<Message>messages;
+
+
+    /*
+    @OneToOne(cascade={CascadeType.PERSIST,CascadeType.REMOVE})
+    Subscription subscription;
+    @OneToMany (mappedBy = "skier")
+    Set<Registration> registrations;
+    @ManyToMany (mappedBy ="skiers")
+    Set<Piste>pistes;*/
+}
