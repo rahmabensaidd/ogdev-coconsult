@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
 import java.util.Set;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -15,8 +16,8 @@ import java.util.Set;
 @Entity
 public class ComplianceRecord {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idRecord;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID idRecord;
     private String title;
     private String status;
     private LocalDate date;

@@ -9,6 +9,8 @@ import lombok.experimental.FieldDefaults;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Set;
+import java.util.UUID;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,8 +20,8 @@ import java.util.Set;
 public class Process implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY )
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
     private String procName;
     private LocalDate creationDate;
     private LocalDate modifDate;

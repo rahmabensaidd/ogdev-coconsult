@@ -5,6 +5,8 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
+import java.util.UUID;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -13,8 +15,8 @@ import java.time.LocalDate;
 @Entity
 public class Non_Conformity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idNon_Conformity;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID idNon_Conformity;
     private String source ;
     private String description;
     private LocalDate date_creation;

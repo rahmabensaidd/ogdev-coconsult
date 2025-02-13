@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -14,8 +15,8 @@ import java.util.Set;
 @Entity
 public class QMSElement {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer elementId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID elementId;
     private String name;
     private String description;
 
