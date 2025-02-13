@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Set;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -14,8 +15,8 @@ import java.util.Set;
 @Entity
 public class Objective {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idObjective;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID idObjective;
     private String title ;
 
     @ManyToOne
