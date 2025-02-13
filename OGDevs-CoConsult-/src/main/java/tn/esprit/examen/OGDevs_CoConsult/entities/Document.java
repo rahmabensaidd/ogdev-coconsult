@@ -32,7 +32,6 @@ public class Document  implements Serializable {
     private StatutDocument statut;
 
     @ManyToOne
-
     private User createdBy;
 
     @OneToMany(mappedBy = "document", cascade = CascadeType.ALL)

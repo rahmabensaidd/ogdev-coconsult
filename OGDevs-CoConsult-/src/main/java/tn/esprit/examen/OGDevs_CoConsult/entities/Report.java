@@ -16,7 +16,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @FieldDefaults(level= AccessLevel.PRIVATE)
 @Entity
-public class Rapport  implements Serializable {
+public class Report implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;

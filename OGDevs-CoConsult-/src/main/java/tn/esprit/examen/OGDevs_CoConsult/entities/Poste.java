@@ -23,6 +23,7 @@ public class Poste implements Serializable {
     private UUID id;
     private String mission;
     private float salaire;
+
     @ManyToMany(mappedBy ="postes" )
     Set<Operation>operations;
 

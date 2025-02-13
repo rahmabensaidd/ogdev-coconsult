@@ -23,10 +23,13 @@ public class Operation implements Serializable {
     private UUID id;
     private String operationName;
     private String operationDescription;
+
     @ManyToOne
     Process process;
+
     @OneToMany(mappedBy = "operation")
     Set<Task>tasks;
+
     @ManyToMany
     Set<Poste>postes;
 

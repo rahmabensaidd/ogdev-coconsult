@@ -25,6 +25,7 @@ public class Message  implements Serializable {
     private String receiver;
     private String content;
     private LocalDate sendDate;
+
     @ManyToOne
     Conversation conversation;
 
