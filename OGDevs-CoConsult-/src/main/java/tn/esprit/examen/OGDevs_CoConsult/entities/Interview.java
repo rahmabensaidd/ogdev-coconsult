@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.UUID;
 
@@ -14,19 +14,14 @@ import java.util.UUID;
 @NoArgsConstructor
 @FieldDefaults(level= AccessLevel.PRIVATE)
 @Entity
-public class Indicator implements Serializable {
+public class Interview {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID idIndicateur;
-    private String libelle;
-    private Integer frequence;
-    private String Actif;
+    private UUID idInterview;
+    private String name;
+    private String description;
+    private LocalDate interviewDate;
 
-    @ManyToOne
-    Objective objective;
-
-    @OneToMany(mappedBy = "indicator")
-    Set<Non_Conformity> nonConformities;
-    @ManyToOne
-    private Report rapport;
+    @ManyToMany(mappedBy = "interviews")
+    Set<User> rh_candidat;
 }

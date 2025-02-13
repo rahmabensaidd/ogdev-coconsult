@@ -14,15 +14,19 @@ import java.util.UUID;
 @NoArgsConstructor
 @FieldDefaults(level= AccessLevel.PRIVATE)
 @Entity
-public class Projet {
+public class Phase {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID idProjet;
-    private String name;
+    private UUID idPhase;
+    private String phase_name;
     private String description;
     private LocalDate start_Date;
-    private LocalDate expected_endDate;
+    private LocalDate end_Date;
 
-    @OneToMany(mappedBy = "projet")
-    Set<Process> processes;
+    @ManyToOne
+    Project project;
+    @ManyToMany
+    Set<Bug>bugs;
+    @OneToOne
+    Milestone milestone;
 }

@@ -32,6 +32,5 @@ public class Process implements Serializable {
     @OneToMany(mappedBy = "process")
     Set<Objective> objectives;
 
-    @ManyToOne
-    Projet projet;
+
 }
