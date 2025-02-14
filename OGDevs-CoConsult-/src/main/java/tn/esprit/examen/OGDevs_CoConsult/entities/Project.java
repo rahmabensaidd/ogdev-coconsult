@@ -23,7 +23,7 @@ public class Project {
     private LocalDate start_Date;
     private LocalDate expected_endDate;
 
-    @ManyToMany(mappedBy = "projet")
+    @ManyToMany
     Set<Process> processes;
     @OneToMany(mappedBy = "project")
     Set<Phase>phases;
