@@ -5,6 +5,7 @@
 
 export const environment = {
   production: false,
+  serverUrl : '/api',
   hmr: false,
   backend: false,
   keycloak: {

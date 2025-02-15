@@ -19,6 +19,9 @@ import { HeaderFrontComponent } from './FrontOffice/header-front/header-front.co
 import { LoadingCompComponent } from './FrontOffice/loading-comp/loading-comp.component';
 import {KeycloakAngularModule , KeycloakService} from 'keycloak-angular' ;
 import {initializer} from '../utils/app-init';
+import { AccessDeniedComponent } from './components/access-denied/access-denied.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { ManagerComponent } from './components/manager/manager.component';
 
 const APP_PROVIDERS = [
   AppConfig,
@@ -45,7 +48,10 @@ const APP_PROVIDERS = [
     AllTemplatefrontComponent,
     FooterFrontComponent,
     HeaderFrontComponent,
-    LoadingCompComponent
+    LoadingCompComponent,
+    AccessDeniedComponent,
+    AdminComponent,
+    ManagerComponent
   ],
   imports: [
     BrowserModule,
