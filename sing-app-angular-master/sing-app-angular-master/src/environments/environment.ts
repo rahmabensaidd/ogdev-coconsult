@@ -6,5 +6,13 @@
 export const environment = {
   production: false,
   hmr: false,
-  backend: false
+  backend: false,
+  keycloak: {
+    issuer:
+      'http://localhost:8080/auth/',
+    realm:
+      'demo-realm',
+    clientId:
+      'demo-angular',
+  }
 };

@@ -1,24 +1,49 @@
-import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
-import {Observable} from 'rxjs';
-import {LoginService} from './pages/login/login.service';
-import {Injectable} from '@angular/core';
+import {Injectable, NgZone} from '@angular/core';
+import {
+  ActivatedRouteSnapshot,
+  Router,
+  RouterStateSnapshot,
+  UrlTree
+} from '@angular/router';
+import { KeycloakAuthGuard, KeycloakService } from 'keycloak-angular';
 
-@Injectable()
-export class AppGuard implements CanActivate {
+@Injectable({
+  providedIn: 'root',
+})
+export class AppGuard extends KeycloakAuthGuard {
   constructor(
-    private router: Router,
-    private loginService: LoginService
-  ) {}
+    protected override readonly router: Router,
+    protected readonly keycloak: KeycloakService
+  ) {
+    super(router, keycloak); // ✅ Using the correct parameter
+  }
 
-  canActivate(
+  public override async isAccessAllowed(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<boolean> | boolean {
+  ): Promise<boolean | UrlTree> { // ✅ Fixed return type
+    // Force the user to log in if currently unauthenticated.
+    if (!this.authenticated) {
+      await this.keycloak.login({
+        redirectUri: window.location.origin + state.url,
+      });
+      return this.router.parseUrl('/login'); // ✅ Return a UrlTree to fix type issue
+    }
 
-    if (this.loginService.isAuthenticated()) {
+    // Get the roles required from the route.
+    const requiredRoles = route.data['roles'];
+
+    // Allow the user to proceed if no additional roles are required to access the route.
+    if (!Array.isArray(requiredRoles) || requiredRoles.length === 0) {
+      return true;
+    }
+
+    // Allow the user to proceed if all the required roles are present.
+    if (requiredRoles.every((role) => this.roles.includes(role))) {
       return true;
     } else {
-      this.router.navigate(['/login']);
+      // Redirect to error page if the user doesn't have the necessary role to access
+      return this.router.parseUrl('/access-denied'); // ✅ Return a UrlTree instead of navigating
     }
   }
 }
