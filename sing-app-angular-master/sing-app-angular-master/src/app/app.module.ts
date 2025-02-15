@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -17,11 +17,24 @@ import { AllTemplatefrontComponent } from './FrontOffice/all-templatefront/all-t
 import { FooterFrontComponent } from './FrontOffice/footer-front/footer-front.component';
 import { HeaderFrontComponent } from './FrontOffice/header-front/header-front.component';
 import { LoadingCompComponent } from './FrontOffice/loading-comp/loading-comp.component';
+import {KeycloakAngularModule , KeycloakService} from 'keycloak-angular' ;
+import {initializer} from '../utils/app-init';
 
 const APP_PROVIDERS = [
   AppConfig,
   LoginService,
-  AppGuard
+  AppGuard,
+  {
+    provide: APP_INITIALIZER,
+    useFactory: initializer,
+    deps: [KeycloakService],
+    multi: true
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AppInterceptor,
+    multi: true
+  }
 ];
 
 @NgModule({
@@ -36,6 +49,7 @@ const APP_PROVIDERS = [
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
@@ -43,14 +57,15 @@ const APP_PROVIDERS = [
     RouterModule.forRoot(ROUTES, {
     useHash: true,
     preloadingStrategy: PreloadAllModules,
-    relativeLinkResolution: 'legacy'
-})
+    relativeLinkResolution: 'legacy' }),
+      KeycloakAngularModule
   ],
   providers: [
     APP_PROVIDERS,
     {
       provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true
     }
+
   ]
 })
 export class AppModule {}

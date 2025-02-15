@@ -5,7 +5,7 @@
   "scripts": {
     "install": "napa",
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "start:backend": "ng serve --configuration backend",
     "hmr": "ng serve --configuration hmr",
     "build": "ng build --configuration production --base-href ./",
@@ -14,6 +14,7 @@
   },
   "private": true,
   "dependencies": {
+    "-": "^0.0.1",
     "@agm/core": "3.0.0-beta.0",
     "@angular/animations": "14.2.0",
     "@angular/common": "14.2.0",
@@ -55,6 +56,7 @@
     "jquery-ui": "https://github.com/jquery/jquery-ui.git#1.11.4",
     "jquery.animate-number": "0.0.14",
     "jvectormap": "2.0.4",
+    "keycloak-js": "^26.1.2",
     "line-awesome": "icons8/line-awesome",
     "lodash.isequal": "^4.5.0",
     "magnific-popup": "1.2.0",
@@ -76,6 +78,7 @@
     "popper.js": "1.16.1",
     "rickshaw": "1.7.1",
     "rxjs": "^6.6.7",
+    "save": "^2.9.0",
     "select2": "4.1.0-rc.0",
     "select2-bootstrap-theme": "0.1.0-beta.10",
     "shufflejs": "4.2.0",
