@@ -4,7 +4,24 @@ import {AppGuard} from './app.guard';
 
 import {AllTemplatefrontComponent} from './FrontOffice/all-templatefront/all-templatefront.component';
 import {LoadingCompComponent} from './FrontOffice/loading-comp/loading-comp.component';
+import {AccessDeniedComponent} from './components/access-denied/access-denied.component';
+import {AdminComponent} from './components/admin/admin.component';
+import {ManagerComponent} from './components/manager/manager.component';
 export const ROUTES: Routes = [
+  {path: 'access-denied',
+    component: AccessDeniedComponent,
+    canActivate: [AppGuard]
+  },
+  {path: 'admin',
+    component: AdminComponent,
+    canActivate: [AppGuard],
+    data: {roles: ['ROLE_ADMIN']}
+  },
+  {path: 'manager',
+    component: ManagerComponent,
+    canActivate: [AppGuard],
+    data: {roles: ['ROLE_MANAGER']}
+  },
   {
     path: 'front',
     component: AllTemplatefrontComponent,
